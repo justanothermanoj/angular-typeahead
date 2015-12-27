@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="angular-typeahead">
+<head>
+	<title>Angular Typeahead</title>
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</head>
+<body>
+<input ng-model="input" />
+<input type="disabled" ng-model="first_term" />
+<ul>
+	<li ng-repeat="term in filteredTerms = (data | filter:input)">
+		<p ng-bind-html="term | highlight:input"></p>
+	</li>
+</ul>
+</body>
+</html>
