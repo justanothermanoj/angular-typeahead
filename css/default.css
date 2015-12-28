@@ -1,3 +1,29 @@
 .highlighted {
-  color: red;
+    color: red;
+}
+
+.input {
+    height: 40px;
+    font-size: 25px;
+    padding: 10px;
+    background: transparent;
+}
+
+#search-box-container {
+	padding-top: 50px;
+}
+
+#search-box {
+    position: absolute;
+    z-index: 11;
+    top: 0;
+    left: 0;
+}
+
+#autocompleteterm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    color: #bdc3c7;
 }
