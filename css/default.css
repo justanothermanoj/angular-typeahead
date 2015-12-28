@@ -3,14 +3,19 @@
 }
 
 .input {
-    height: 40px;
     font-size: 25px;
     padding: 10px;
     background: transparent;
 }
 
-#search-box-container {
+#angular-autocomplete {
 	padding-top: 50px;
+    font-family: 'monospace';
+}
+
+#angular-autocomplete .result {
+    padding: 0px;
+    list-style: none;
 }
 
 #search-box {
