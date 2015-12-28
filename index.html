@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <div id="search-box-container">
+    <div id="angular-autocomplete">
         <input class="input" id="search-box" ng-model="input" />
         <input class="input" id="autocompleteterm" type="disabled" ng-model="first_term" />
-        <ul>
-            <li ng-repeat="term in filteredTerms = (data | filter:input)">
+        <ul class="result">
+            <li ng-repeat="term in filteredTerms = (data | filter:input | sort:['toString',input,strict])">
                 <p ng-bind-html="term | highlight:input"></p>
             </li>
         </ul>
