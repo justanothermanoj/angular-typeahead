@@ -17,11 +17,15 @@ app.controller('angular-typeahead', function($scope) {
     ];
 
     $scope.autocomplete = function() {
-        if ($scope.filteredTerms[0]) {
-            var first = $scope.filteredTerms[0];
-            var input = $scope.input;
-            if (first.substr(0, input.length).toLowerCase() == input.toLowerCase()) {
-                $scope.first_term = first.replace(first.substr(0, input.length), input);
+        if ($scope.input.length != 0) {
+            if ($scope.filteredTerms[0]) {
+                var first = $scope.filteredTerms[0];
+                var input = $scope.input;
+                if (first.substr(0, input.length).toLowerCase() == input.toLowerCase()) {
+                    $scope.first_term = first.replace(first.substr(0, input.length), input);
+                } else {
+                    $scope.first_term = "";
+                }
             } else {
                 $scope.first_term = "";
             }
