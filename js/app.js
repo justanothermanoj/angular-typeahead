@@ -1,10 +1,17 @@
 // Main Module
 var app = angular.module('app', []);
 
+app.directive('angularTypeahead', function() {
+    return {
+        restrict: 'E',
+        templateUrl : 'templates/default.html'
+    }
+});
+
 
 // Main Controller
 
-app.controller('angular-typeahead', function($scope) {
+app.controller('typeahead-controller', function($scope) {
     // main inpput
     $scope.input = "";
     // the first result
