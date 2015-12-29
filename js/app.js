@@ -2,70 +2,75 @@
 var app = angular.module('app', []);
 
 app.directive('angularTypeahead', function() {
-    return {
-        restrict: 'E',
-        templateUrl : 'templates/default.html'
-    }
+    var link = function(scope, element, attrs) {
+            // main inpput
+            scope.input = "";
+            // the first result
+            scope.first_term = "";
+            // array to contain results
+            scope.filteredTerms = [];
+            // array of data to search from
+            scope.data = [
+                'Youtube',
+                'Twitter',
+                'Linkedin',
+                'Github',
+                'Soundcloud',
+                'Twitch',
+                'Vimeo',
+                'Facebook',
+                'Google'
+            ];
+
+            // main autocomplete function 
+
+            scope.autocomplete = function() {
+                if (scope.input.length != 0) {
+                    if (scope.filteredTerms[0]) {
+                        var first = scope.filteredTerms[0];
+                        var input = scope.input;
+                        if (first.substr(0, input.length).toLowerCase() == input.toLowerCase()) {
+                            scope.first_term = first.replace(first.substr(0, input.length), input);
+                        } else {
+                            scope.first_term = "";
+                        }
+                    } else {
+                        scope.first_term = "";
+                    }
+                } else {
+                    scope.first_term = "";
+                }
+            }
+
+            // watch for input changes 
+
+            scope.$watch('input', function(newval, oldval) {
+
+                scope.autocomplete();
+
+            });
+
+            // watch filteredTerms for changes
+
+            scope.$watchCollection('filteredTerms', function(newval, oldval) {
+
+                scope.autocomplete();
+
+            });
+        }
+
+        return {
+            restrict: 'E',
+            link: link,
+            scope: {},
+            templateUrl: 'templates/default.html'
+        }
 });
 
 
 // Main Controller
 
 app.controller('typeahead-controller', function($scope) {
-    // main inpput
-    $scope.input = "";
-    // the first result
-    $scope.first_term = "";
-    // array to contain results
-    $scope.filteredTerms = [];
-    // array of data to search from
-    $scope.data = [
-        'Youtube',
-        'Twitter',
-        'Linkedin',
-        'Github',
-        'Soundcloud',
-        'Twitch',
-        'Vimeo',
-        'Facebook',
-        'Google'
-    ];
-
-    // main autocomplete function 
-
-    $scope.autocomplete = function() {
-        if ($scope.input.length != 0) {
-            if ($scope.filteredTerms[0]) {
-                var first = $scope.filteredTerms[0];
-                var input = $scope.input;
-                if (first.substr(0, input.length).toLowerCase() == input.toLowerCase()) {
-                    $scope.first_term = first.replace(first.substr(0, input.length), input);
-                } else {
-                    $scope.first_term = "";
-                }
-            } else {
-                $scope.first_term = "";
-            }
-        } else {
-            $scope.first_term = "";
-        }
-    }
-
-    // watch for input changes 
-
-    $scope.$watch('input', function(newval, oldval) {
-
-        $scope.autocomplete();
-
-    });
-
-    // watch filteredTerms for changes
-
-    $scope.$watchCollection('filteredTerms', function(newval, oldval) {
-
-        $scope.autocomplete();
-
-    });
 
 });
 
