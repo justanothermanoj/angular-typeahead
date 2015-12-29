@@ -7,6 +7,9 @@
     padding: 10px;
     background: transparent;
     border: 2px solid #333;
+    top: 0;
+    left: 0;
+    position: absolute;
 }
 
 #angular-autocomplete {
@@ -20,16 +23,15 @@
 }
 
 #angular-typehead-search-box {
-    position: absolute;
     z-index: 11;
-    top: 0;
-    left: 0;
 }
 
 #angular-typehead-autocomplete-term {
-    position: absolute;
-    top: 0;
-    left: 0;
     z-index: 10;
     color: #bdc3c7;
+}
+
+#pre-term {
+    z-index: 12;
+    background-color: #fff;
 }
