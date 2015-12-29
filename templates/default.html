@@ -1,6 +1,6 @@
-<input class="input" id="search-box" ng-model="input" placeholder="Type here" />
-<input class="input" id="autocompleteterm" type="disabled" ng-model="first_term" />
-<ul class="result">
+<input class="input" id="angular-typehead-search-box" ng-model="input" placeholder="Type here" />
+<input class="input" id="angular-typehead-autocomplete-term" type="disabled" ng-model="first_term" />
+<ul id="angular-typehead-results">
     <li ng-repeat="term in filteredTerms = (data | filter:input | sort:['toString',input,strict])">
         <p ng-bind-html="term | highlight:input"></p>
     </li>
