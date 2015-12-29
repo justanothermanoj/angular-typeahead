@@ -1,6 +1,20 @@
 // Main Module
 var app = angular.module('app', []);
 
+$(document).mouseup(function(e) {
+
+    var container = $("#angular-typehead-search-box");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        $("#angular-typehead-results").hide();
+        $('#angular-typehead-autocomplete-term').hide();
+    } else {
+        $("#angular-typehead-results").show();
+    }
+});
+
 app.directive('angularTypeahead', function() {
     var link = function(scope, element, attrs) {
             // main inpput
