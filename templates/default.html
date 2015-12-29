@@ -1,5 +1,6 @@
 <input class="input" id="angular-typehead-search-box" ng-model="input" placeholder="Type here" />
 <input class="input" id="angular-typehead-autocomplete-term" type="disabled" ng-model="first_term" />
+<input id="pre-term" type="text" class="input" ng-model="pre_term"/>
 <ul id="angular-typehead-results">
     <li ng-repeat="term in filteredTerms = (data | filter:input | sort:['toString',input,strict])">
         <p ng-bind-html="term | highlight:input"></p>
