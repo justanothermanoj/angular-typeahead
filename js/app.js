@@ -9,7 +9,7 @@ $(document).mouseup(function(e) {
         && container.has(e.target).length === 0) // ... nor a descendant of the container
     {
         $("#angular-typehead-results").hide();
-        $('#angular-typehead-autocomplete-term').hide();
+        $('#pre-term').hide();
     } else {
         $("#angular-typehead-results").show();
     }
@@ -23,6 +23,8 @@ app.directive('angularTypeahead', function() {
         scope.first_term = "";
         // array to contain results
         scope.filteredTerms = [];
+        scope.recent = -1;
+        scope.pre_term = '';
         // array of data to search from
         scope.data = [
             'Youtube',
@@ -35,6 +37,31 @@ app.directive('angularTypeahead', function() {
             'Facebook',
             'Google'
         ];
+
+        element.bind("keydown keypress", function(event) {
+            if (event.which === 40) {
+                scope.$apply(function() {
+                    if (scope.recent >= scope.filteredTerms.length - 1) {
+                        scope.recent = -1;
+                    }
+                    $('#pre-term').show();
+                    scope.pre_term = scope.filteredTerms[scope.recent + 1];
+                    scope.recent = scope.recent + 1;
+                });
+                event.preventDefault();
+            } else if (event.which === 38) {
+                scope.$apply(function() {
+                    if (scope.recent <= 0) {
+                        $('#pre-term').hide();
+                    } else {
+                        $('#pre-term').show();
+                        scope.pre_term = scope.filteredTerms[scope.recent - 1];
+                        scope.recent = scope.recent - 1;
+                    }
+                });
+                event.preventDefault();
+            }
+        });
 
         // main autocomplete function 
 
@@ -61,6 +88,7 @@ app.directive('angularTypeahead', function() {
         scope.$watch('input', function(newval, oldval) {
 
             $('#angular-typehead-autocomplete-term').show();
+            $('#pre-term').hide();
             scope.autocomplete();
 
         });
