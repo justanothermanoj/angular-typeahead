@@ -6,6 +6,7 @@
     font-size: 25px;
     padding: 10px;
     background: transparent;
+    border: 2px solid #333;
 }
 
 #angular-autocomplete {
@@ -13,19 +14,19 @@
     font-family: 'monospace';
 }
 
-#angular-autocomplete .result {
+#angular-autocomplete #angular-typehead-results {
     padding: 0px;
     list-style: none;
 }
 
-#search-box {
+#angular-typehead-search-box {
     position: absolute;
     z-index: 11;
     top: 0;
     left: 0;
 }
 
-#autocompleteterm {
+#angular-typehead-autocomplete-term {
     position: absolute;
     top: 0;
     left: 0;
