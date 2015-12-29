@@ -1,9 +1,17 @@
+// Main Module
 var app = angular.module('app', []);
 
+
+// Main Controller
+
 app.controller('angular-typeahead', function($scope) {
+    // main inpput
     $scope.input = "";
+    // the first result
     $scope.first_term = "";
+    // array to contain results
     $scope.filteredTerms = [];
+    // array of data to search from
     $scope.data = [
         'Youtube',
         'Twitter',
@@ -15,6 +23,8 @@ app.controller('angular-typeahead', function($scope) {
         'Facebook',
         'Google'
     ];
+
+    // main autocomplete function 
 
     $scope.autocomplete = function() {
         if ($scope.input.length != 0) {
@@ -34,11 +44,15 @@ app.controller('angular-typeahead', function($scope) {
         }
     }
 
+    // watch for input changes 
+
     $scope.$watch('input', function(newval, oldval) {
 
         $scope.autocomplete();
 
     });
+
+    // watch filteredTerms for changes
 
     $scope.$watchCollection('filteredTerms', function(newval, oldval) {
 
@@ -48,6 +62,8 @@ app.controller('angular-typeahead', function($scope) {
 
 });
 
+// filter to highlight results
+
 app.filter('highlight', function($sce) {
     return function(text, phrase) {
         if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'), '<span class="highlighted">$1</span>');
@@ -55,6 +71,7 @@ app.filter('highlight', function($sce) {
     }
 });
 
+// sorting algorithm
 
 app.filter('sort', function() {
 
