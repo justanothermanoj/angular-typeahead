@@ -45,18 +45,22 @@ app.directive('angularTypeahead', function() {
                         scope.recent = -1;
                     }
                     $('#pre-term').show();
-                    scope.pre_term = scope.filteredTerms[scope.recent + 1];
                     scope.recent = scope.recent + 1;
+                    scope.pre_term = scope.filteredTerms[scope.recent];
+                    console.log(scope.recent);
                 });
                 event.preventDefault();
             } else if (event.which === 38) {
                 scope.$apply(function() {
                     if (scope.recent <= 0) {
                         $('#pre-term').hide();
+                            scope.recent = -1;
+                        
                     } else {
                         $('#pre-term').show();
-                        scope.pre_term = scope.filteredTerms[scope.recent - 1];
                         scope.recent = scope.recent - 1;
+                        scope.pre_term = scope.filteredTerms[scope.recent];
+                        console.log(scope.recent);
                     }
                 });
                 event.preventDefault();
