@@ -35,7 +35,10 @@ app.directive('angularTypeahead', function() {
             'Twitch',
             'Vimeo',
             'Facebook',
-            'Google'
+            'Google',
+            'Duckduckgo',
+            'Spotify',
+            'Google+'
         ];
 
         element.bind("keydown keypress", function(event) {
@@ -43,6 +46,7 @@ app.directive('angularTypeahead', function() {
                 scope.$apply(function() {
                     if (scope.recent >= scope.filteredTerms.length - 1) {
                         scope.recent = -1;
+                        scope.pre_term = '';
                     }
                     $('#pre-term').show();
                     scope.recent = scope.recent + 1;
@@ -55,7 +59,7 @@ app.directive('angularTypeahead', function() {
                     if (scope.recent <= 0) {
                         $('#pre-term').hide();
                             scope.recent = -1;
-                        
+                            scope.pre_term = '';
                     } else {
                         $('#pre-term').show();
                         scope.recent = scope.recent - 1;
@@ -64,12 +68,22 @@ app.directive('angularTypeahead', function() {
                     }
                 });
                 event.preventDefault();
+            } else if (event.which === 13) {
+                scope.$apply(function() {
+                    if(scope.pre_term != '') {
+                        scope.input = scope.pre_term;
+                    } else if (scope.first_term != '') {
+                        scope.input = scope.first_term;
+                    }
+                });
             }
         });
 
         // main autocomplete function 
 
         scope.autocomplete = function() {
+            scope.recent = -1;
+            scope.pre_term = '';
             if (scope.input.length != 0) {
                 if (scope.filteredTerms[0]) {
                     var first = scope.filteredTerms[0];
