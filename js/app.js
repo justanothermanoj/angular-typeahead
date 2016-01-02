@@ -3,7 +3,7 @@ var app = angular.module('app', []);
 
 $(document).mouseup(function(e) {
 
-    var container = $("#angular-typehead-search-box");
+    var container = $("#angular-autocomplete");
 
     if (!container.is(e.target) // if the target of the click isn't the container...
         && container.has(e.target).length === 0) // ... nor a descendant of the container
@@ -46,7 +46,7 @@ app.directive('angularTypeahead', function() {
                 scope.$apply(function() {
                     if (scope.recent >= scope.filteredTerms.length - 1) {
                         scope.recent = -1;
-                        scope.pre_term = '';
+                        scope.set_pre_term('');
                     }
                     $('#pre-term').show();
                     scope.recent = scope.recent + 1;
@@ -59,7 +59,7 @@ app.directive('angularTypeahead', function() {
                     if (scope.recent <= 0) {
                         $('#pre-term').hide();
                             scope.recent = -1;
-                            scope.pre_term = '';
+                            scope.set_pre_term('');
                     } else {
                         $('#pre-term').show();
                         scope.recent = scope.recent - 1;
@@ -73,7 +73,7 @@ app.directive('angularTypeahead', function() {
                     if(scope.pre_term != '') {
                         scope.input = scope.pre_term;
                     } else if (scope.first_term != '') {
-                        scope.input = scope.first_term;
+                        scope.set_term(scope.first_term);
                     }
                 });
             }
@@ -82,8 +82,12 @@ app.directive('angularTypeahead', function() {
         // main autocomplete function 
 
         scope.autocomplete = function() {
+            $("#angular-typehead-results").show();
+            if(scope.first_term == scope.input && scope.input != '') {
+                $("#angular-typehead-results").hide();
+            }
             scope.recent = -1;
-            scope.pre_term = '';
+            scope.set_pre_term('');
             if (scope.input.length != 0) {
                 if (scope.filteredTerms[0]) {
                     var first = scope.filteredTerms[0];
@@ -99,6 +103,14 @@ app.directive('angularTypeahead', function() {
             } else {
                 scope.first_term = "";
             }
+        }
+
+        scope.set_pre_term = function (text) {
+            scope.pre_term = text;
+        }
+
+        scope.set_term = function (text) {
+            scope.input = text;
         }
 
         // watch for input changes 
