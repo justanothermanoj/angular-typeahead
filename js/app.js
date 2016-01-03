@@ -83,7 +83,7 @@ app.directive('angularTypeahead', function() {
 
         scope.autocomplete = function() {
             $("#angular-typehead-results").show();
-            if(scope.first_term == scope.input && scope.input != '') {
+            if(scope.first_term == scope.input && scope.input != '' && !(scope.filteredTerms.length > 1)) {
                 $("#angular-typehead-results").hide();
             }
             scope.recent = -1;
