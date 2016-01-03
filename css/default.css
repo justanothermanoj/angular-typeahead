@@ -7,19 +7,20 @@
     padding: 10px;
     background: transparent;
     border: 2px solid #333;
-    top: 0;
-    left: 0;
     position: absolute;
 }
 
 #angular-autocomplete {
-	padding-top: 50px;
     font-family: 'monospace';
+    min-height: 70px;
+    float: left;
+    width: 100%;
 }
 
 #angular-autocomplete #angular-typehead-results {
     padding: 0px;
     list-style: none;
+    margin-top: 70px;
 }
 
 #angular-typehead-search-box {
