@@ -74,6 +74,17 @@ app.directive('angularTypeahead', function() {
                     }
                 });
                 event.preventDefault();
+            } else if (event.which === 39) {
+                scope.$apply(function() {
+                    var input = document.getElementById('angular-typehead-search-box');
+                    var val = input.value;
+                    var cur_pos = val.slice(0, input.selectionStart).length;
+                    if(cur_pos == scope.input.length) {
+                        if(scope.filteredTerms[0]){
+                            scope.input = scope.filteredTerms[0];
+                        }
+                    }
+                });
             } else if (event.which === 13) {
                 scope.$apply(function() {
                     if (scope.pre_term != '') {
