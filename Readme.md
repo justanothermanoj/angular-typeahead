@@ -8,7 +8,7 @@ Options
 
 `Data` : list of terms to search from must be an array 
 <br>
-`limit` : homw many terms to show for autocomplete
+`limit` : home many terms to show for autocomplete
 
 
 Thanks
