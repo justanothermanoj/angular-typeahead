@@ -3,6 +3,12 @@ Angular Autocomplete (In development)
 
 An angularjs autcomplete directive
 
+Options
+-------
+
+`Data` : list of terms to search from must be an array 
+`limit` : homw many terms to show for autocomplete
+
 
 Thanks
 ------
