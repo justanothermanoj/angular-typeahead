@@ -79,8 +79,8 @@ app.directive('angularTypeahead', function() {
                     var input = document.getElementById('angular-typehead-search-box');
                     var val = input.value;
                     var cur_pos = val.slice(0, input.selectionStart).length;
-                    if(cur_pos == scope.input.length) {
-                        if(scope.filteredTerms[0]){
+                    if (cur_pos == scope.input.length) {
+                        if (scope.filteredTerms[0]) {
                             scope.input = scope.filteredTerms[0];
                         }
                     }
@@ -95,6 +95,15 @@ app.directive('angularTypeahead', function() {
                 });
             }
         });
+
+        $('#pre-term').click(function() {
+            scope.$apply(function() {
+                $('#pre-term').hide();
+                $('#angular-typehead-search-box').focus();
+                console.log(scope.pre_term);
+                scope.input = scope.pre_term;
+            });
+        })
 
         // main autocomplete function 
 
@@ -153,7 +162,7 @@ app.directive('angularTypeahead', function() {
         link: link,
         scope: {
             data: '=',
-            limit : '='
+            limit: '='
         },
         templateUrl: 'templates/default.html'
     }
