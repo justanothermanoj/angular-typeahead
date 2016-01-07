@@ -10,6 +10,13 @@ Options
 <br>
 `limit` : home many terms to show for autocomplete
 
+How to use
+----------
+
+~~~ html
+<angular-typeahead data="countries" limit="10"></angular-typeahead>
+~~~
+
 
 Thanks
 ------
