@@ -1,4 +1,4 @@
-Angular Autocomplete (In)
+Angular Autocomplete (In development)
 ====================
 
 An angularjs autcomplete directive
